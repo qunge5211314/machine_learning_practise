@@ -1,0 +1,25 @@
+venv/
+migrations/
+.idea/
+*.xls
+*.xlsx
+.vscode/
+*.pyc
+__pycache__/
+*/.DS_Store
+*/.svn
+record
+.app/celeryd
+celeryd
+supervisord.conf
+AlipayNotify.log
+webAlipayNotify.log
+.DS_Store
+./export
+.coverage
+# Node.js
+node_modules
+package-lock.json
+npm-debug.log*
+npm-debug.log*
+yarn-error.log
