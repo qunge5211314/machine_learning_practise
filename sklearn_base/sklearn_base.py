@@ -1,3 +1,9 @@
+#!python3
+# -*- coding: utf-8 -*-
+# Author: JustinHan
+# Date: 2021-01-22
+# Introduce: 机器学习scikit-learn框架基础部分
+# Dependence
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 
