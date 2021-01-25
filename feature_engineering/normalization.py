@@ -12,6 +12,6 @@ data = load_iris()
 features_x = data.data
 
 if __name__ == '__main__':
-    minMaxScaler = StandardScaler()
-    result = minMaxScaler.fit_transform(features_x)
+    standardScaler = StandardScaler()
+    result = standardScaler.fit_transform(features_x)
     print(result)

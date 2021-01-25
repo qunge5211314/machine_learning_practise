@@ -2,16 +2,15 @@
 # -*- coding: utf-8 -*-
 # Author: JustinHan
 # Date: 2021-01-25
-# Introduce: 正规方程求解线性回归系数
+# Introduce:
 # Dependence
 from sklearn.datasets import load_boston
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 
-# 波士顿房价预测
 def boston_housing_price_predict():
     # (1)获取数据
     raw_all_data = load_boston()
@@ -22,7 +21,7 @@ def boston_housing_price_predict():
     x_train = transfer.fit_transform(x_train)
     x_test = transfer.fit_transform(x_test)
     # (4)预估器
-    estimator = LinearRegression()
+    estimator = Ridge(alpha=10, fit_intercept=True)
     estimator.fit(x_train, y_train)
     # (5)得出模型
     print("权重系数为:\n", estimator.coef_)
@@ -31,7 +30,7 @@ def boston_housing_price_predict():
     y_predict = estimator.predict(x_test)
     print("预测的房价:\n", y_predict)
     error = mean_squared_error(y_test, y_predict)
-    print("正规方程-均方误差为:\n", error)
+    print("梯度下降-均方误差为:\n", error)
 
 
 if __name__ == '__main__':
