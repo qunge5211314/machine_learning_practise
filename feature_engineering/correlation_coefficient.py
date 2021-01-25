@@ -1,8 +1,8 @@
 #!python3
 # -*- coding: utf-8 -*-
 # Author: JustinHan
-# Date:
-# Introduce:
+# Date: 2021-01-24
+# Introduce: 皮尔逊方程求解特征相关性
 # Dependence
 from sklearn.datasets import load_iris
 from scipy.stats import pearsonr
