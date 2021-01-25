@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author: JustinHan
 # Date: 2021-01-25
-# Introduce: 逻辑回归算法案例
+# Introduce: 分类的评估方法
 # Dependence
 import pandas as pd
 import numpy as np
@@ -10,6 +10,7 @@ import ssl
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -44,17 +45,11 @@ def breast_cancer_predict():
     estimator = LogisticRegression()
     estimator.fit(x_train, y_train)
 
-    # 7.逻辑回归的模型参数：回归系数和偏置
-    print("模型参数-回归系数:\n", estimator.coef_)
-    print("模型参数-偏置:\n", estimator.intercept_)
-
-    # 8.模型评估
-    # 方法1.直接比对真实值和预估值
+    # 7.模型评估
     y_predict = estimator.predict(x_test)
-    print("直接比对真实值和预测值:\n", y_test == y_predict)
-    # 方法2.计算准确率
-    score = estimator.score(x_test, y_test)
-    print("准确率为:\n", score)
+    # 查看准确率、召回率、F1-score
+    report = classification_report(y_test, y_predict, labels=[2, 4], target_names=["良性", "恶性"])
+    print(report)
 
 
 if __name__ == '__main__':
