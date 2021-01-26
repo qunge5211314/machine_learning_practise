@@ -1,22 +1,20 @@
 #!python3
 # -*- coding: utf-8 -*-
 # Author: JustinHan
-# Date: 2021-01-25
-# Introduce: 分类的评估方法
+# Date: 2021-01-26
+# Introduce: AUC指标评价分类算法
 # Dependence
+from sklearn.metrics import roc_auc_score
 import pandas as pd
-import numpy as np
-import ssl
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
 import joblib
+import numpy as np
+import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-
-def breast_cancer_predict():
+def model_auc_estimate():
     # 1. 获取数据
     data_path = "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data"
     column_names = ['Sample code number', 'Clump Thickness', 'Uniformity of Cell Size', 'Uniformity of Cell Shape',
@@ -42,18 +40,17 @@ def breast_cancer_predict():
     x_train = transfer.fit_transform(x_train)
     x_test = transfer.fit_transform(x_test)
 
-    # 6.创建模型
-    estimator = LogisticRegression()
-    estimator.fit(x_train, y_train)
-    # 7.模型评估
+    # 6.导入模型
+    estimator = joblib.load("./预测癌症模型.m")
+    # 7.预测
     y_predict = estimator.predict(x_test)
-    # 查看准确率、召回率、F1-score
-    report = classification_report(y_test, y_predict, labels=[4, 2], target_names=["恶性", "良性"], output_dict=True)
-    print(report)
-    if report.get("恶性").get("recall") >= 0.9999:
-        joblib.dump(estimator, "./预测癌症模型.m")
-
+    # 由于y_test不满足roc_auc_score方法中对y_true的要求，故需要将y_test进行转换
+    # 7.转换
+    y_true = np.where(y_test > 3, 1, 0)
+    # 8.计算AUC指标
+    auc = roc_auc_score(y_true, y_predict)
+    print(auc)
 
 
 if __name__ == '__main__':
-    breast_cancer_predict()
+    model_auc_estimate()
