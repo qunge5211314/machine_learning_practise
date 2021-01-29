@@ -30,7 +30,7 @@ def boston_housing_price_predict():
     print(x_train_poly)
     print(x_test_poly)
     # (5)预估器
-    estimator = SGDRegressor(learning_rate="invscaling", eta0=0.03, alpha=0.01)
+    estimator = SGDRegressor(learning_rate="invscaling", eta0=0.03, alpha=1)
     estimator.fit(x_train_poly, y_train)
     joblib.dump(estimator, "../model_save_load/heihei.m")
     # (6)得出模型
