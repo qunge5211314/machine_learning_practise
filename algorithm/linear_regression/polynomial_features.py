@@ -24,7 +24,7 @@ def boston_housing_price_predict():
     x_train = transfer.fit_transform(x_train)
     x_test = transfer.fit_transform(x_test)
     # (4)多次幂处理特征
-    polynomialFeatures = PolynomialFeatures(degree=3)
+    polynomialFeatures = PolynomialFeatures(degree=1)
     x_train_poly = polynomialFeatures.fit_transform(x_train)
     x_test_poly = polynomialFeatures.fit_transform(x_test)
     print(x_train_poly)
@@ -32,7 +32,6 @@ def boston_housing_price_predict():
     # (5)预估器
     estimator = SGDRegressor(learning_rate="invscaling", eta0=0.03, alpha=1)
     estimator.fit(x_train_poly, y_train)
-    joblib.dump(estimator, "../model_save_load/heihei.m")
     # (6)得出模型
     print("权重系数为:\n", estimator.coef_)
     print("偏置值为:\n", estimator.intercept_)
