@@ -35,5 +35,6 @@ def k_means_cluster():
     y_predict = estimator.predict(data_new)
     print(y_predict)
 
+
 if __name__ == '__main__':
     k_means_cluster()
