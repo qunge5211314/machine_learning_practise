@@ -7,6 +7,9 @@
 from sklearn.cluster import KMeans
 import pandas as pd
 from sklearn.decomposition import PCA
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def k_means_cluster():
@@ -33,7 +36,7 @@ def k_means_cluster():
     # 6.训练数据
     estimator.fit(data_new)
     y_predict = estimator.predict(data_new)
-    print(y_predict)
+    print("预测结果为:\n", y_predict)
 
 
 if __name__ == '__main__':
