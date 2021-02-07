@@ -38,13 +38,13 @@ def instacart_case():
     # print(tab3)
     # 3.找到user_id和aisles之间的关系
     table = pd.crosstab(tab3["user_id"], tab3["aisle"])
-    print(table)
+    print(table.shape)
     # 4.PCA降维
     # 1)实例化一个转换器类
     transfer = PCA(n_components=0.95)
     # 2)调用fit_transform
     data_new = transfer.fit_transform(table)
-    print(data_new)
+    print(data_new.shape)
 
 
 if __name__ == '__main__':
