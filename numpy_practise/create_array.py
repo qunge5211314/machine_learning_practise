@@ -72,5 +72,14 @@ print("k:\n", k)
 
 print("-------------------------------------")
 
-l = np.linspace(0, 2*np.pi, 6)  # (x1, x2, N): 创建N个均匀间隔的数字，包括x1, x2
+l = np.linspace(0, 2 * np.pi, 6)  # (x1, x2, N): 创建N个均匀间隔的数字，包括x1, x2
 print("l:\n", l)
+
+print("-------------------------------------")
+
+m = np.random.default_rng()  # 实例化随机数字生成器，rng: random number generator
+n = m.random((3, 4))
+print("m:\n", m)
+print("n:\n", n)
+
+print("-------------------------------------")
