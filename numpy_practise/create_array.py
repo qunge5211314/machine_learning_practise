@@ -7,6 +7,12 @@
 import numpy as np
 
 a = np.array([1, 2, 3, 4, 5])  # []: 列表数据类型
+
+print("np.pi:\n", np.pi)
+print("np.e:\n", np.e)
+
+print("-------------------------------------")
+
 print("a:\n", a)
 print(type(a))
 
